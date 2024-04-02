@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!--    Form View-->
+    <record id="view_booking_form" model="ir.ui.view">
+        <field name="name">view.booking.form</field>
+        <field name="model">hotel.booking</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                  <h1>Bookings of STARLINE DIVINE!!</h1>
+                </header>
+
+                <sheet>
+                    <group>
+<!--                        <label for="booking_id"></label><br/>-->
+                        <widget name="web_ribbon" title="Not active" bg_color="bg-danger" invisible="active"/>
+                        <widget name="web_ribbon" title="Active" bg_color="bg-success" invisible="not active"/><br></br>
+                        <field name="booking_id" string="Booking Reference" placeholder="Enter booking id"></field>
+                        <field name="guest_name" placeholder="Enter Guest Name" required="1"></field>
+                        <field name="guest_email" placeholder="Enter Guest's Email id" widget="email"></field>
+                        <field name="date_of_booking" ></field>
+                        <field name="check_in" ></field>
+                        <field name="check_out" ></field>
+                        <field name="password" password="#" ></field>
+                        <field name="website" widget="url"></field>
+<!--                        <field name="room_availability"></field>-->
+                        <field name="type_of_rooms" ></field>
+                        <field name="active" invisible="1" ></field>
+                        <field name="guest_priority" widget="priority"></field>
+                        <field name="sign_in" widget="float_time"></field>
+
+                        <separator string="Additional Info of Guests"/>
+                        <notebook>
+                            <page name="pg_guest_info" string="Guest_info">
+                             <field name="guest_info" placeholder="enter guest info" ></field>
+
+                            </page>
+                            <page name="pg_description" string="Description">
+                                <field name="description" placeholder="enter special requirements of guests"></field>
+                            </page>
+
+                        </notebook>
+                        <br></br>
+
+
+                        <separator string="Account"/>
+
+                        <field name="per_day_cost" ></field>
+                        <field name="mode_of_payment" widget="radio"></field>
+                        <field name="days_book_for" ></field>
+                        <field name="taxes" ></field>
+                        <field name="subtotal" ></field>
+
+
+
+
+
+<!--                        </separator>-->
+
+
+                    </group>
+                </sheet>
+                <footer>
+                    <h1>Designed by HY....</h1>
+                </footer>
+
+            </form>
+
+        </field>
+    </record>
+    <record id="view_booking_tree" model="ir.ui.view">
+        <field name="name">view.hotel.booking.tree</field>
+        <field name="model">hotel.booking</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="booking_id"></field>
+                <field name="guest_name"></field>
+                <field name="check_in"></field>
+                <field name="check_out"></field>
+                <field name="subtotal"></field>
+            </tree>
+
+        </field>
+
+    </record>
+    <record id="action_hotel" model="ir.actions.act_window">
+        <field name="name">Bookings</field>
+        <field name="res_model">hotel.booking</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_hotel" name="Hotel"/>
+    <menuitem id="menu_booking" name="All Booking" parent="menu_hotel"/>
+    <menuitem id="menu_hotel_student" action="action_hotel" parent="menu_booking"/>
+
+</odoo>
